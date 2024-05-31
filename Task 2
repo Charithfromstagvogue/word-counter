@@ -1,0 +1,16 @@
+import re
+def count_words(string):
+    word_count = 0
+    state = 0  
+    for char in re.findall(r"\\.|[\w]", string):
+        if char == '\\':
+            continue
+        if char.isalnum():
+            if state == 0:
+                word_count += 1
+                state = 1
+        else:
+            state = 0
+    return word_count
+string = "abc\\p\"" 
+print("No of words:", count_words(string))
